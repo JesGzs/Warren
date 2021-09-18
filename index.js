@@ -69,8 +69,8 @@ function presencia(){
 client.user.setPresence({
     status: "online",
     activity: {
-      name: `w.help |⚡️| Outlaw#5991`,
-      type: "WATCHING"
+      name: `w.play |🎵| Musica`,
+      type: "LISTENING"
     }
   });
 }
@@ -201,4 +201,4 @@ monitor.on('down', (res) => console.log(`${res.website} se ha caído - ${res.sta
 monitor.on('stop', (website) => console.log(`${website} se ha parado.`) );
 monitor.on('error', (error) => console.log(error));
 
-client.login(TOKEN);
+client.login("NzQ5MDU2MTA2OTk5MDU0NDA4.X0ma3A.jyZsXn-xBS34OKkWmeKPr1yCbBI");
