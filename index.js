@@ -51,19 +51,7 @@ const fs = require("fs");
     let commandfile = client.comandos.get(cmd.slice(PREFIX.length));
     if (commandfile) commandfile.run(client, message, args);
   });
-///////db Welcome
- 
-client.on("guildMemberAdd", async (member) => {
-  
-  let wChan = db.fetch(`welcome_${member.guild.id}`)
 
-  if (wChan == null) return;
-
-  if (!wChan) return;
-
-
-  member.guild.channels.cache.get(wChan).send(attachment);
-});
 ////READYY//////////////////////////////////////////////////////////////////
 function presencia(){
 client.user.setPresence({
@@ -146,33 +134,29 @@ if (blacklist === "Blacklisted") return;
   }
 });
 
-////pruebas
-
+////DB WELCOME////
 client.on("guildMemberAdd", async (member) => {
 
-   let guild = client.guilds.cache.get("758431584717766739")   
-  let channel = client.channels.cache.get("837176485759811594");  
-  
+  const { CanvasSenpai } = require("canvas-senpai")
+  const canva = new CanvasSenpai();
+
   let wChan = db.fetch(`welcome_${member.guild.id}`)
 
   if (wChan == null) return;
 
   if (!wChan) return;
 
-  let wel = new Zeew.Bienvenida()
-    .token("5fbd597f5557800e8912e4fb")
-    .estilo("classic")
-    .avatar(member.user.displayAvatarURL({ format: "png" }))
-    .fondo("https://wallpapercave.com/wp/wp6059015.jpg")
-    .colorTit("#E22E39")
-    .titulo(`Bienvenid@ ${member.user.username}`)
-    .colorDesc("#fff")
-    .descripcion("Tenemos un nuevo usuario");
- 
-  let img = await Zeew.WelcomeZeew(wel);
-  let attachment = new MessageAttachment(img, "zeewapi-img.gif");
- 
-  member.guild.channels.cache.get(channel).send(attachment);
+  let data = await canva.welcome(member, { link: "https://img3.wallspic.com/previews/9/3/0/4/6/164039/164039-banner_de_contraccion_de_la_galaxia-contraccion_nerviosa-banner_web-streaming_de_medios_de_comunicacion-gamer-x750.jpg" }) 
+
+  const attach = new Discord.MessageAttachment(
+    data,
+    "welcome-image.png"
+  );
+    
+  member.guild.channels.cache.get(wChan).send(
+    `Bienvenid@ al server, ${member}!`,
+    attach
+  );   
 });
 
 ////Snipe client
