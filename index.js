@@ -186,19 +186,4 @@ client.snipes.set(message.channel.id,{
 })
 });
 
-const keepAlive = require('./server');
-const Monitor = require('ping-monitor');
- 
-keepAlive();
-const monitor = new Monitor({
-    website: 'https://Monitor.jesgzs.repl.co',
-    title: 'Principal',
-    interval: 15 // minutes
-});
- 
-monitor.on('up', (res) => console.log(`${res.website} está encedido.`));
-monitor.on('down', (res) => console.log(`${res.website} se ha caído - ${res.statusMessage}`));
-monitor.on('stop', (website) => console.log(`${website} se ha parado.`) );
-monitor.on('error', (error) => console.log(error));
-
-client.login("NzQ5MDU2MTA2OTk5MDU0NDA4.X0ma3A.jyZsXn-xBS34OKkWmeKPr1yCbBI");
+client.login("TOKEN");
